@@ -4,13 +4,26 @@
 <html lang="en">
 <head>
     <title>Brain test page</title>
+    <style>html { font-family: Arial, sans-serif} </style>
     <script src="connectome.js"></script>
 </head>
 <body>
     <script>
-    var newBox = document.createElement('h3');
-        newBox.innerHTML = "Connectome:";
-        document.body.appendChild(newBox);
+    var nameBox = document.createElement('TEXTAREA');
+        nameBox.id = "accumleft";
+        nameBox.cols = 3;
+        nameBox.rows = 1;
+        document.body.appendChild(nameBox);
+
+    var nameBox = document.createElement('TEXTAREA');
+        nameBox.id = "accumright";
+        nameBox.cols = 3;
+        nameBox.rows = 1;
+        document.body.appendChild(nameBox);
+
+    var titleBox = document.createElement('h3');
+        titleBox.innerHTML = "Connectome:";
+        document.body.appendChild(titleBox);
     
     BRAIN.setup();
     for(var ps in BRAIN.connectome) {
@@ -28,11 +41,26 @@
     function update() {
         BRAIN.update();
         for(var ps in BRAIN.connectome) {
-            document.getElementById(ps).innerHTML = BRAIN.postSynaptic[ps][BRAIN.thisState];
+            var psBox = document.getElementById(ps);
+            var neuron = BRAIN.postSynaptic[ps][BRAIN.thisState];
+
+            psBox.innerHTML = neuron;
+            psBox.style.backgroundColor = "#FFFFFF";
+            if(neuron > 5) {
+                psBox.style.backgroundColor = "#DDFFDD";
+            } 
+            if(neuron > 20) {
+                psBox.style.backgroundColor = "#77FF77";
+            }  
+            if(neuron >= 30) {
+                psBox.style.backgroundColor = "#55FF55";
+            } 
         }
+        document.getElementById("accumleft").innerHTML = BRAIN.accumleft;
+        document.getElementById("accumright").innerHTML = BRAIN.accumright;
     }
 
-    setInterval(update, 1000 / 30);
+    setInterval(update, 100);
     </script>
 </body>
 </html>

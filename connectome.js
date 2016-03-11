@@ -4816,7 +4816,7 @@ BRAIN.runconnectome = function() {
         }
     }
 
-    //BRAIN.motorcontrol();
+    BRAIN.motorcontrol();
 
     for (var ps in BRAIN.postSynaptic) {
         BRAIN.postSynaptic[ps][BRAIN.thisState] = BRAIN.postSynaptic[ps][BRAIN.nextState];
@@ -4849,18 +4849,18 @@ BRAIN.motorcontrol = function() {
     /* accumulate left and right muscles and the accumulated values are
        used to move the left and right motors of the robot */
 
-    for (var muscle in BRAIN.muscleList) {
-        if (muscle in BRAIN.mLeft) {
+    BRAIN.accumleft = 0;
+    BRAIN.accumright = 0;
 
-            console.log(muscle);
-            BRAIN.accumleft += BRAIN.postSynaptic[muscle][BRAIN.nextState];
-            BRAIN.postSynaptic[muscle][BRAIN.nextState] = 0;
+    for(var m = 0; m < BRAIN.muscleList.length; m++) {
+        var muscleName = BRAIN.muscleList[m];
 
-        } else if (muscle in BRAIN.mRight) {
-
-            BRAIN.accumright += BRAIN.postSynaptic[muscle][BRAIN.nextState];
-            BRAIN.postSynaptic[muscle][BRAIN.nextState] = 0;
-
+        if(BRAIN.mLeft.indexOf(muscleName) != -1) {
+            BRAIN.accumleft += BRAIN.postSynaptic[muscleName][BRAIN.nextState];
+            BRAIN.postSynaptic[muscleName][BRAIN.nextState] = 0;
+        } else if(BRAIN.mRight.indexOf(muscleName) != -1) {
+            BRAIN.accumright += BRAIN.postSynaptic[muscleName][BRAIN.nextState];
+            BRAIN.postSynaptic[muscleName][BRAIN.nextState] = 0;
         }
     }
 
