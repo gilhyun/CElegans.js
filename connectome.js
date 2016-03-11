@@ -4808,22 +4808,23 @@ BRAIN.update = function() {
 
 BRAIN.runconnectome = function() {
 
-    for (var ps in postSynaptic) {
+    for (var ps in BRAIN.postSynaptic) {
         /* Muscles cannot fire, make sure they don't */
-        if(muscles.indexOf(ps.substring(0,3)) != -1 && postSynaptic[ps][thisState] > threshold) {
-            fireNeuron(ps);
+        if(BRAIN.muscles.indexOf(ps.substring(0,3)) == -1 && 
+           BRAIN.postSynaptic[ps][BRAIN.thisState] > BRAIN.fireThreshold) {
+            BRAIN.fireNeuron(ps);
         }
     }
 
-    motorcontrol();
+    //BRAIN.motorcontrol();
 
-    for (var ps in postSynaptic) {
-        postSynaptic[ps][thisState] = postSynaptic[ps][nextState];
+    for (var ps in BRAIN.postSynaptic) {
+        BRAIN.postSynaptic[ps][BRAIN.thisState] = BRAIN.postSynaptic[ps][BRAIN.nextState];
     }
 
-    var temp = thisState;
-    thisState = nextState;
-    nextState = temp;
+    var temp = BRAIN.thisState;
+    BRAIN.thisState = BRAIN.nextState;
+    BRAIN.nextState = temp;
 
 }
 
@@ -4832,7 +4833,7 @@ BRAIN.fireNeuron = function(fneuron) {
     /* The threshold has been exceeded and we fire the neurite */
     if (fneuron !== "MVULVA") {
         BRAIN.connectome[fneuron]();
-        BRAIN.postSynaptic[fneuron][nextState] = 0;
+        BRAIN.postSynaptic[fneuron][BRAIN.nextState] = 0;
     }
 
 }
@@ -4851,6 +4852,7 @@ BRAIN.motorcontrol = function() {
     for (var muscle in BRAIN.muscleList) {
         if (muscle in BRAIN.mLeft) {
 
+            console.log(muscle);
             BRAIN.accumleft += BRAIN.postSynaptic[muscle][BRAIN.nextState];
             BRAIN.postSynaptic[muscle][BRAIN.nextState] = 0;
 
@@ -4863,5 +4865,3 @@ BRAIN.motorcontrol = function() {
     }
 
 }
-
-alert("all is well.")

@@ -1,1 +1,38 @@
-<script src="connectome.js"></script>
+<!-- Here's a small webpage to test the brain. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Brain test page</title>
+    <script src="connectome.js"></script>
+</head>
+<body>
+    <script>
+    var newBox = document.createElement('h3');
+        newBox.innerHTML = "Connectome:";
+        document.body.appendChild(newBox);
+    
+    BRAIN.setup();
+    for(var ps in BRAIN.connectome) {
+        var nameBox = document.createElement('span');
+            nameBox.innerHTML = ps;
+        document.body.appendChild(nameBox);
+
+        var newBox = document.createElement('TEXTAREA');
+            newBox.cols = 3;
+            newBox.rows = 1;
+            newBox.id = ps;
+        document.body.appendChild(newBox);
+    }
+
+    function update() {
+        BRAIN.update();
+        for(var ps in BRAIN.connectome) {
+            document.getElementById(ps).innerHTML = BRAIN.postSynaptic[ps][BRAIN.thisState];
+        }
+    }
+
+    setInterval(update, 1000 / 30);
+    </script>
+</body>
+</html>
