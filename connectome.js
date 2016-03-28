@@ -34,7 +34,7 @@ BRAIN.musDright = ['MDR07', 'MDR08', 'MDR09', 'MDR10', 'MDR11', 'MDR12', 'MDR13'
 BRAIN.musVright = ['MVR07', 'MVR08', 'MVR09', 'MVR10', 'MVR11', 'MVR12', 'MVR13', 'MVR14', 'MVR15', 'MVR16', 'MVR17', 'MVR18', 'MVR19', 'MVR20', 'MVL21', 'MVR22', 'MVR23'];
 
 /* Use these to stimulate nose and food sensing neurons */
-BRAIN.stimulateNoseTouchNeurons = true;
+BRAIN.stimulateNoseTouchNeurons = false;
 BRAIN.stimulateFoodSenseNeurons = false;
 
 BRAIN.setup = function() {
@@ -4814,6 +4814,10 @@ BRAIN.runconnectome = function() {
            BRAIN.postSynaptic[ps][BRAIN.thisState] > BRAIN.fireThreshold) {
             BRAIN.fireNeuron(ps);
         }
+
+        /* If no message activity is received within 200 ms, the accumulator 
+         * is automatically set to zero (e.g., depolarizes the cell) */
+        // TODO (this is probably important.)
     }
 
     BRAIN.motorcontrol();
