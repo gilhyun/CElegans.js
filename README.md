@@ -1,4 +1,4 @@
-# jsconnectome
+# CElegans.js
 
 C. Elegans Connectome ported to Javascript
 
