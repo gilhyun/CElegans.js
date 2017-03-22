@@ -6,6 +6,6 @@ Be warned that by running this, you may be simulating a living being depending o
 
 Based on the python <a href="https://github.com/Connectome/GoPiGo">GoPiGo Connectome</a> by Timothy Busbice, Gabriel Garrett, Geoffrey Churchill
 
-Check out a live demo <a href="http://zrispo.co/worm/">here</a>!
+You can see the brain placed in a little virtual worm body <a href="http://zrispo.co/worm/">here</a>
 
 <img src="http://i.imgur.com/uOtt9zD.png" />
