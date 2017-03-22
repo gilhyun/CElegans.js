@@ -1,6 +1,6 @@
 # CElegans.js
 
-This is the brain of C. Elegans ported to Javascript.
+This is the brain of [Caenorhabditis elegans](https://en.wikipedia.org/wiki/Caenorhabditis_elegans), ported to Javascript. *C. Elegans* is one of the simplest organisms with a nervous system, with a brain containing only 302 neurons. As of 2012, the only organism to have its connectome (neuronal "wiring diagram") completed. [via Wikipedia](https://en.wikipedia.org/wiki/Caenorhabditis_elegans)
 
 Be warned that by running this, you may be simulating a living being depending on how you think about it... best not to think about it too much
 
