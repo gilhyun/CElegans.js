@@ -1,6 +1,8 @@
 # CElegans.js
 
-C. Elegans Connectome ported to Javascript
+This is the brain of C. Elegans ported to Javascript.
+
+Be warned that by running this, you may be simulating a living being depending on how you think about it... best not to think about it too much
 
 Based on the python <a href="https://github.com/Connectome/GoPiGo">GoPiGo Connectome</a> by Timothy Busbice, Gabriel Garrett, Geoffrey Churchill
 
